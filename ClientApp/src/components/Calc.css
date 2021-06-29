@@ -1,0 +1,28 @@
+ html {
+  font-size: 22px;
+   font-weight: 600 important;
+}
+
+
+select{
+  font-weight: 900 !important;
+}
+/*
+button{
+  font-weight: 900 !important;
+}
+
+input.args{
+  width: 100px !important;
+   
+  font-size: 22px !important;
+ 
+}
+
+select.args{
+  width: 60px !important;
+    font-weight: 600 !important;
+  font-size: 22px !important;
+ 
+};  */
+
