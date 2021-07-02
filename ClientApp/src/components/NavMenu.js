@@ -24,7 +24,7 @@ export class NavMenu extends Component {
   render() {
     return (
       <header>
-        <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
+        <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-blue border-bottom box-shadow mb-3" light>
           <Container>
             <NavbarBrand tag={Link} to="/">aed_isracart_ahuva</NavbarBrand>
             <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
@@ -37,12 +37,12 @@ export class NavMenu extends Component {
                   <NavLink tag={Link} className="text-dark" to="/calc">Calc</NavLink>
                 </NavItem>
 
-                <NavItem>
+                {/* <NavItem>
                   <NavLink tag={Link} className="text-dark" to="/counter">Counter</NavLink>
-                </NavItem>
-                <NavItem>
+                </NavItem> */}
+                {/* <NavItem>
                   <NavLink tag={Link} className="text-dark" to="/fetch-data">Fetch data</NavLink>
-                </NavItem>
+                </NavItem> */}
               </ul>
             </Collapse>
           </Container>

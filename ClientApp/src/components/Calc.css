@@ -7,11 +7,11 @@
 select{
   font-weight: 900 !important;
 }
-/*
-button{
+
+button.btnSubm{
   font-weight: 900 !important;
 }
-
+/*
 input.args{
   width: 100px !important;
    

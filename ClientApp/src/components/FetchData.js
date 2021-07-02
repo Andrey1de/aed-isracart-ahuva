@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {jsonGET$} from '../services/JsonHttpService'
 
 export class FetchData extends Component {
   static displayName = FetchData.name;
@@ -50,10 +51,20 @@ export class FetchData extends Component {
       </div>
     );
   }
-
+// export const execPOST = (url, body) => {
+//   return fetch(url, {
+//     method: "POST",
+//     headers: {
+//       "Access-Control-Allow-Origin": "*",
+//       "Content-Type": "application/json"
+//     },
+//     body: JSON.stringify(body)
+//   });
+// };
   async populateWeatherData() {
-    const response = await fetch('weatherforecast');
-    const data = await response.json();
+  //  debugger;
+
+    const data = await jsonGET$('http://localhost:5000/api/weather');
     this.setState({ forecasts: data, loading: false });
   }
 }
