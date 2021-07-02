@@ -1,6 +1,7 @@
 
 import { jsonPOST$, jsonDELETE$ } from '../services/JsonHttpService'
 import { CalcDto } from '../models/CalcDto';
+import { Subject } from 'rxjs';
 //import { jsonPOST$, jsonGET$, jsonDELETE$ } from '../services/JsonHttpService'
 export const MOK = 1;
 const BASE_URL_0 = 'http://localhost:5000/';
@@ -13,10 +14,14 @@ class CalcServiceSingle {
     static CMap =  new Map ();//<id,CalcDto>
     static Operations = ['+', '-', '*', '/'];//<id,CalcDto>
     
+   
+    
     constructor() {
         this.Selected = undefined;
+        this.subjectHistory = new Subject();
     }
 
+    onHistory = () => this.subjectHistory.asObservable();
 
     //CALCULATES  (x, y, op) returns status , reult and ID 
     // stores item in internal cache and  the server
@@ -53,8 +58,7 @@ class CalcServiceSingle {
             const  _status = +_data?.status;
             const _result = _data?.result;
             const _id = +_data?.id;
-
-             
+           
             if (+_status !== 200) {
                 retValue.error = 'HTTP Error status:' + _status;
             } else {
@@ -68,6 +72,7 @@ class CalcServiceSingle {
                 retValue.dto = dto;
                  
             }
+         //   this.subjectHistory.next(_id);
 
         } catch (error) {
           
@@ -91,11 +96,14 @@ class CalcServiceSingle {
         return {status:200,result:ret,id:++CalcServiceSingle.ID};
     }
 
-    //DELETES requested ID item from history 
+
+    //DELETES requested ID item from history
     //both from internal cache and  the server
     // Returns true if succeded
     removeById$ = async (id) => { //{ //  CalcDto[]
-        const ret = CalcServiceSingle.CMap.delete(id);
+        const ret = CalcServiceSingle.CMap.delete(+id);
+        this.subjectHistory.next(-1);
+
         this.Selected = undefined;
         if (!MOK) {
             jsonDELETE$(BASE_URL_0 + 'api/calc/' + id)
@@ -107,7 +115,7 @@ class CalcServiceSingle {
     // Returns IEnumerable<CalcDto[]>
     getHistory = () => { //  CalcDto[]
         //TBD retrieve from server
-        const ret = [...CalcServiceSingle.CMap.values()];
+        const ret = [...CalcServiceSingle.CMap.values()].reverse();
         console.log('=>getHistory(' + ret.length + ')')
         return ret;
     }
@@ -130,13 +138,8 @@ class CalcServiceSingle {
         return  this.Selected ;
     }
     getById = (id) => { // CalcDto
-        return CalcServiceSingle.CMap.get(id);
+        return CalcServiceSingle.CMap.get(+id);
     }
-
-     
- 	
-
-
     
 }
 
