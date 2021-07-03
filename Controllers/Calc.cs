@@ -11,26 +11,23 @@ using System.Threading;
 
 namespace aed_isracart_ahuva.Controllers
 {
-    public class CalcOperation
-    {
-        public double ArgX { get; set; }
-        public double ArgY { get; set; }
-        public string Operation { get; set; }
 
-
-    }
-    public class CalcResult
+    public class CalcRequest
     {
         public int Id { get; set; }
         public double ArgX { get; set; }
         public double ArgY { get; set; }
         public string Operation { get; set; }
-
+    }
+    public class CalcDto
+    {
+        public int Id { get; set; }
+        public double ArgX { get; set; }
+        public double ArgY { get; set; }
+        public string Operation { get; set; }
         public double Result { get; set; }
-
-        public int Status { get; set; }
-
-        public DateTime Current { get; set; } = DateTime.Now;
+        public string Error { get; set; }
+        public DateTime? Current { get; set; } = DateTime.Now;
     }
 
     [Route("api/calc")]
@@ -41,8 +38,8 @@ namespace aed_isracart_ahuva.Controllers
         static string[] Operations { get; set; } =
             new string[] { "+", "-", "*", "/" };
 
-        static readonly SortedDictionary<int, CalcResult> CalcResults =
-            new SortedDictionary<int, CalcResult>();
+        static readonly Dictionary<int, CalcDto> CalcHistory =
+            new Dictionary<int, CalcDto>();
 
         //// GET: api/<Calc> returns operations
 
@@ -62,9 +59,9 @@ namespace aed_isracart_ahuva.Controllers
         /// </summary>
         /// <returns>List of CalcResult instances</returns>
         [HttpGet("history")]
-        public ActionResult<List<CalcResult>> GetHistory()
+        public ActionResult<List<CalcDto>> GetHistory()
         {
-            return Ok(CalcResults.Values.ToList());
+            return Ok(CalcHistory.Values.ToList());
         }
 
 
@@ -74,50 +71,54 @@ namespace aed_isracart_ahuva.Controllers
         /// supplied in body {argX,argY,Operation} , 
         /// saves result in internal store
         /// </summary>
-        /// <param name="calcOeration"></param>
+        /// <param name="calcReq"></param>
         /// <returns>CalcResult or BadRequest</returns>
         [HttpPost]
-        public  ActionResult<CalcResult> Post([FromBody] CalcOperation calcOeration)
+        public  ActionResult<CalcDto> Post([FromBody] CalcRequest calcReq)
         {
-            CalcResult ret = new CalcResult()
+            CalcDto ret = new CalcDto()
             {
-                Id = 0,
-                ArgX = calcOeration.ArgX,
-                ArgY = calcOeration.ArgY,
-                Operation = calcOeration.Operation,
-                Result = 0.0,
-                Status = (int)S.OK
+                Id = calcReq.Id,
+                ArgX = calcReq.ArgX,
+                ArgY = calcReq.ArgY,
+                Operation = calcReq.Operation,
+                Result = 0,
+                Error = ""
             };
-            switch (calcOeration.Operation)
+            
+            switch (calcReq.Operation)
             {
                 case "+":
-                    ret.Result = calcOeration.ArgX + calcOeration.ArgY;
+                    ret.Result = calcReq.ArgX + calcReq.ArgY;
                     break;
 
                 case "-":
-                     ret.Result = calcOeration.ArgX - calcOeration.ArgY;
+                     ret.Result = calcReq.ArgX - calcReq.ArgY;
                     break;
                 case "*":
-                     ret.Result = calcOeration.ArgX * calcOeration.ArgY;
+                     ret.Result = calcReq.ArgX * calcReq.ArgY;
                     break;
                 case "/":
-                    if (calcOeration.ArgY != 0)
+                    if (calcReq.ArgY != 0)
                     {
-                        ret.Result = calcOeration.ArgX / calcOeration.ArgY;
+                        ret.Result = calcReq.ArgX / calcReq.ArgY;
                     }
                     else
                     {
-                        ret.Status = (int)S.BadRequest;
-                        return BadRequest();
+                        ret.Error = "Divide by Zero";
                     }
-                    
                     break;
-
                 default:
-                    return BadRequest();
+                    ret.Error = "Unsupported operation";
+                    break;
+                   
             }
-            ret.Id = Interlocked.Increment(ref IDX);
-            CalcResults.Add(ret.Id, ret);
+         //   ret.Id = Interlocked.Increment(ref IDX);
+            if(ret.Error.Length <= 0)
+            {
+                CalcHistory[ret.Id] = ret;
+            }
+   
 
             return Ok(ret);
         }
@@ -131,10 +132,10 @@ namespace aed_isracart_ahuva.Controllers
         [HttpDelete("{id}")]
         public ActionResult<bool> Delete(int id)
         {
-            bool b = CalcResults.ContainsKey(id);
+            bool b = CalcHistory.ContainsKey(id);
             if (b)
             {
-                CalcResults.Remove(id);
+                CalcHistory.Remove(id);
             }
             return b;
         }

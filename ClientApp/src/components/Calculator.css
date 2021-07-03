@@ -1,5 +1,5 @@
  html {
-  font-size: 22px;
+  font-size: 16 px;
    font-weight: 600 important;
 }
 
@@ -11,14 +11,15 @@ select{
 button.btnSubm{
   font-weight: 900 !important;
 }
-/*
+
 input.args{
-  width: 100px !important;
-   
+  width: 60 px !important;
+  padding-left: 10px;
+  padding-right: 10px;
   font-size: 22px !important;
  
 }
-
+/*
 select.args{
   width: 60px !important;
     font-weight: 600 !important;

@@ -1,10 +1,23 @@
 export class CalcDto {
-    constructor(id) {
-        this.id = id;
+    constructor() {
+        this.id = -1;
         this.argX = 0;
         this.argY = 0;
         this.operation = '+';
         this.result = undefined;
-        this.date = new Date();
+        this.error = '';
+        this.current = new Date();
     }
 }
+
+export class CalcRequest {
+
+    constructor() {
+        
+        this.id =  -1;
+        this.argX =  0;
+        this.argY =   0;
+        this.operation =  '';
+   }
+}
+  

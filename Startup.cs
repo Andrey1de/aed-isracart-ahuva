@@ -84,7 +84,7 @@ namespace aed_isracart_ahuva
 
                 if (env.IsDevelopment())
                 {
-                 //  spa.UseReactDevelopmentServer(npmScript: "start");
+                  spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
         }
