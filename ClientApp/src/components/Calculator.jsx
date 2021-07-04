@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 //import { render } from "react-dom";
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button ,Tooltip} from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import { faEquals } from "@fortawesome/free-solid-svg-icons";
-import { CalculatorService as Svc ,MOK} from '../services/CalculatorService';
+import { CalculatorService as Svc } from '../services/CalculatorService';
 import './Calculator.css';
 import { CalculatorTable } from './CalculatorTable';
+import 'bootstrap/dist/css/bootstrap.css';
 
 //const MapHistory = new Map();
 export class Calculator extends Component {
@@ -127,46 +129,92 @@ export class Calculator extends Component {
 
     return (
       <div>
-        { (MOK) ? <h4>MOK MODE !!!</h4> : null}
+             
         <Form inline >
 
-          <Form.Group  controlId="inpArgX" >
-            <Form.Label>X:</Form.Label>
-            <Form.Control className="args" type="number" value={ this.state.argX}
-              onChange={(e) => this.setState({ argX: e.target.value })} />
-          </Form.Group >
+          <Form.Group controlId="inpArgX" >
+              <OverlayTrigger
+                delay={{ hide: 450, show: 300 }}
+                overlay={(props) => (
+                  <Tooltip {...props}>
+                   User type 
+                  </Tooltip>
+                )} placement="top">
+                <Form.Control className="args" type="number" value={ this.state.argX}
+                    onChange={(e) => this.setState({ argX: e.target.value })} />
+              </OverlayTrigger>
+
+             </Form.Group >
           &nbsp;&nbsp;
           <Form.Group controlId="selectOperation">
-            <Form.Control as="select" className="args" value={ this.state.operation}
-              onChange={(e) => this.setState({ operation: e.target.value })}>
-              {this.createSelectItems()}
-            </Form.Control>
+
+              <OverlayTrigger
+                delay={{ hide: 450, show: 300 }}
+                overlay={(props) => (
+                  <Tooltip {...props}>
+                   User select from dropdown
+                  </Tooltip>
+                )} placement="bottom">
+                <Form.Control as="select" className="args" value={ this.state.operation}
+                    onChange={(e) => this.setState({ operation: e.target.value })}>
+                      {this.createSelectItems()}           
+                    </Form.Control>
+              </OverlayTrigger>
+        
           </Form.Group>
           &nbsp;&nbsp;
           <Form.Group controlId="inpArgY">
-            <Form.Label>Y:</Form.Label>
-            <Form.Control className="args" type="number" value={ this.state.argY}
-                onChange={(e) => this.setState({ argY: e.target.value })} />
+            <OverlayTrigger
+                  delay={{ hide: 450, show: 300 }}
+                  overlay={(props) => (
+                    <Tooltip {...props}>
+                    User type 
+                    </Tooltip>
+                  )} placement="top">
+              <Form.Control className="args" type="number" value={ this.state.argY}
+                  onChange={(e) => this.setState({ argY: e.target.value })} />
+            </OverlayTrigger>
           </Form.Group>
           &nbsp;&nbsp;
           <Form.Group controlId="btnResult">
-            <Button variant="primary" className="btnSubm"
-              type="button" onClick={this.handleCalc}>
-              <FontAwesomeIcon icon={faEquals} size="lg" /> 
-            </Button>
-            &nbsp;&nbsp;
-            <Form.Label>{this.state.result }</Form.Label> 
+            <OverlayTrigger
+                  delay={{ hide: 450, show: 300 }}
+                  overlay={(props) => (
+                    <Tooltip {...props}>
+                    User clicks 
+                    </Tooltip>
+                  )} placement="top">
+                <Button variant="primary" className="btnSubm"
+                  type="button" onClick={this.handleCalc}>
+                  <FontAwesomeIcon icon={faEquals} size="lg" /> 
+              </Button>
+            </OverlayTrigger>
           </Form.Group>
-  
+           &nbsp;&nbsp;
+           <Form.Group controlId="labResult">
+             <OverlayTrigger
+                  delay={{ hide: 450, show: 300 }}
+                  overlay={(props) => (
+                    <Tooltip {...props}>
+                    Calculated from server 
+                    </Tooltip>
+                  )} placement="top">
+                 
+                <Form.Control className="args" type="text" value={ this.state.result}
+                    readonly />
+              </OverlayTrigger>
+           </Form.Group>
         </Form>
-        <div>
+        <div>      
           {_errorBanner}
         <br/>
-        <Form.Label>X:{this.state.argX}|OP{this.state.operation}|Y:{this.state.argY}={this.state.result}</Form.Label>
+        {/* <Form.Label>X:{this.state.argX}|OP{this.state.operation}|Y:{this.state.argY}={this.state.result}</Form.Label> */}
         </div>
 
         <CalculatorTable></CalculatorTable>
+
       </div >
+    
     );
   }
 

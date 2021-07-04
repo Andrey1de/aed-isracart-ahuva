@@ -94,7 +94,7 @@ export class CalculatorTable extends Component {
                   <td >
                     <Button variant="alarm" className="btnSubm" type="button"
                       onClick={(e) => this.handleRemoveRow(e, dto.id )} >
-                      <FontAwesomeIcon icon={faTimesCircle} size="lg"/>
+                      <FontAwesomeIcon icon={faTimesCircle} size="2x" color="red"/>
                     </Button>
                     
                  
@@ -102,7 +102,7 @@ export class CalculatorTable extends Component {
                   <td>
                     <Button variant="light" className="btnSubm" type="button"
                         onClick={(e) => this.handleSelectRow(e, dto.id)} >
-                      <FontAwesomeIcon icon={faArrowAltCircleRight} size="lg"/>
+                      <FontAwesomeIcon icon={faArrowAltCircleRight} size="2x" color="green"/>
                     </Button>
                     
                   </td>
