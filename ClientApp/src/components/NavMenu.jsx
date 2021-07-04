@@ -3,7 +3,11 @@ import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLi
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
+//import { faBookOpen } from "@fortawesome/free-solid-svg-icons";
+
 import { faCalculator } from "@fortawesome/free-solid-svg-icons";
+import { faSpaceShuttle } from "@fortawesome/free-solid-svg-icons";
+
 
 import './NavMenu.css';
 
@@ -31,21 +35,29 @@ export class NavMenu extends Component {
         <Navbar  color="red" className="navbar-expand-sm 
             navbar-toggleable-sm ng-blue border-bottom box-shadow mb-3" >
           <Container>
-            <NavbarBrand tag={Link} to="/">aed_isracart_ahuva</NavbarBrand>
+            <NavbarBrand tag={Link}  to="/">aed_isracart_ahuva</NavbarBrand>
             <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
             <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
               <ul className="navbar-nav flex-grow">
                 <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/">
-                    <FontAwesomeIcon icon={faHome} size="lg" /> Home
+                  <NavLink tag={Link}  className="text-dark" to="/">
+                    <FontAwesomeIcon color="#0366d6" icon={faHome} size="lg" /> Home
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/calc">
-                    <FontAwesomeIcon icon={faCalculator} size="lg" /> Home
-                    Calculator
+                  <NavLink tag={Link}   className="text-dark" to="/calc">
+                    <FontAwesomeIcon color="#0366d6" icon={faCalculator} size="lg" /> 
+                    &nbsp;Calculator
                   </NavLink>
                 </NavItem>
+               <NavItem>
+                  <NavLink tag={Link}  className="text-dark" to="/swagger">
+                    <FontAwesomeIcon color="#0366d6" icon={faSpaceShuttle} size="lg" />
+                     &nbsp;Swagger
+                  </NavLink>
+                </NavItem>
+            
+          
 
                 {/* <NavItem>
                   <NavLink tag={Link} className="text-dark" to="/counter">Counter</NavLink>
