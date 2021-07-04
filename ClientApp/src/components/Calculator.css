@@ -26,4 +26,15 @@ select.args{
   font-size: 22px !important;
  
 };  */
+.args{
+ 
+}
+.sel {
+ 
+}
+
+.args .sel {
+  font-size: 16 px;
+  font-weight: 900;;
+}
 

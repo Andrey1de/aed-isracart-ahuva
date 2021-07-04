@@ -72,9 +72,9 @@ export class CalculatorTable extends Component {
  
    
     return (
-      <div>
-        <h3 id="tabelLabel" >Calculation's History</h3>
-        <table className='table ' aria-labelledby="tabelLabel">
+      <div  className="tableFrame">
+        <h5 id="tabelLabel" >Calculation's History</h5>
+        <table className='table' aria-labelledby="tabelLabel">
             <thead>
               <tr>
                 <th>ID</th>
@@ -94,7 +94,7 @@ export class CalculatorTable extends Component {
                   <td >
                     <Button variant="alarm" className="btnSubm" type="button"
                       onClick={(e) => this.handleRemoveRow(e, dto.id )} >
-                      <FontAwesomeIcon icon={faTimesCircle} size="2x" color="red"/>
+                      <FontAwesomeIcon icon={faTimesCircle} size="1x" color="red"/>
                     </Button>
                     
                  
@@ -102,7 +102,7 @@ export class CalculatorTable extends Component {
                   <td>
                     <Button variant="light" className="btnSubm" type="button"
                         onClick={(e) => this.handleSelectRow(e, dto.id)} >
-                      <FontAwesomeIcon icon={faArrowAltCircleRight} size="2x" color="green"/>
+                      <FontAwesomeIcon icon={faArrowAltCircleRight} size="1x" color="green"/>
                     </Button>
                     
                   </td>
@@ -110,7 +110,21 @@ export class CalculatorTable extends Component {
               )}
             </tbody>
           </table>
-
+        <footer >
+          <div>
+            <p>
+              <FontAwesomeIcon icon={faTimesCircle} size="2x" color="red" /> 
+              DELETE when user presses this button - the calculation will be deleted (both in server and client);
+            </p>
+            <p>
+              <FontAwesomeIcon icon={faArrowAltCircleRight} size="2x" color="green"/>
+              UPDATE when user presses this button - the calculation will be
+              show in the above inputs and when the user change the value ,
+              it will be updated also in the calculation history.
+            </p>
+          </div>
+         
+        </footer>
         </div>
     );
   }

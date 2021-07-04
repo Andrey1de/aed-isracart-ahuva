@@ -54,8 +54,7 @@ export class Calculator extends Component {
   onEvCalcResult = (dto) =>{
     if (dto &&  !dto.error) {
       this.setState({
-        result: dto.result || 'N/A',
-        error: '',
+        result: dto.result,
         selectedId: -1
       });
       
@@ -129,89 +128,92 @@ export class Calculator extends Component {
 
     return (
       <div>
+        <div>
+          <Form inline >
+
+            <Form.Group controlId="inpArgX" mb={1}>
+                  <OverlayTrigger
+                    delay={{ hide: 450, show: 300 }}
+                    overlay={(props) => (
+                      <Tooltip {...props}>
+                      User type 
+                      </Tooltip>
+                    )} placement="top">
+                    <Form.Control className="args " type="number" value={ this.state.argX}
+                        onChange={(e) => this.setState({ argX: e.target.value })} />
+                  </OverlayTrigger>
+
+                </Form.Group >
+              &nbsp;&nbsp;
+              <Form.Group controlId="selectOperation">
+
+                  <OverlayTrigger
+                    delay={{ hide: 450, show: 300 }}
+                    overlay={(props) => (
+                      <Tooltip {...props}>
+                      User select from dropdown
+                      </Tooltip>
+                    )} placement="bottom">
+                    <Form.Control as="select" className="sel" value={ this.state.operation}
+                        onChange={(e) => this.setState({ operation: e.target.value })}>
+                          {this.createSelectItems()}           
+                        </Form.Control>
+                  </OverlayTrigger>
+            
+              </Form.Group>
+              &nbsp;&nbsp;
+              <Form.Group controlId="inpArgY">
+                <OverlayTrigger
+                      delay={{ hide: 450, show: 300 }}
+                      overlay={(props) => (
+                        <Tooltip {...props}>
+                        User type 
+                        </Tooltip>
+                      )} placement="top">
+                  <Form.Control className="args" type="number" value={ this.state.argY}
+                      onChange={(e) => this.setState({ argY: e.target.value })} />
+                </OverlayTrigger>
+              </Form.Group>
+              &nbsp;&nbsp;
+              <Form.Group controlId="btnResult">
+                <OverlayTrigger
+                      delay={{ hide: 450, show: 300 }}
+                      overlay={(props) => (
+                        <Tooltip {...props}>
+                        User clicks 
+                        </Tooltip>
+                      )} placement="top">
+                    <Button variant="primary" className="btnSubm"
+                      type="button" onClick={this.handleCalc}>
+                      <FontAwesomeIcon icon={faEquals} size="lg" /> 
+                  </Button>
+                </OverlayTrigger>
+              </Form.Group>
+              &nbsp;&nbsp;
+              <Form.Group controlId="labResult">
+                <OverlayTrigger
+                      delay={{ hide: 450, show: 300 }}
+                      overlay={(props) => (
+                        <Tooltip {...props}>
+                        Calculated from server 
+                        </Tooltip>
+                      )} placement="top">
+                    
+                    <Form.Control className="args" type="text" value={ this.state.result}
+                        readOnly />
+                  </OverlayTrigger>
+              </Form.Group>
+            </Form>
+          <div>      
+            {_errorBanner}
+          </div>
              
-        <Form inline >
-
-          <Form.Group controlId="inpArgX" >
-              <OverlayTrigger
-                delay={{ hide: 450, show: 300 }}
-                overlay={(props) => (
-                  <Tooltip {...props}>
-                   User type 
-                  </Tooltip>
-                )} placement="top">
-                <Form.Control className="args" type="number" value={ this.state.argX}
-                    onChange={(e) => this.setState({ argX: e.target.value })} />
-              </OverlayTrigger>
-
-             </Form.Group >
-          &nbsp;&nbsp;
-          <Form.Group controlId="selectOperation">
-
-              <OverlayTrigger
-                delay={{ hide: 450, show: 300 }}
-                overlay={(props) => (
-                  <Tooltip {...props}>
-                   User select from dropdown
-                  </Tooltip>
-                )} placement="bottom">
-                <Form.Control as="select" className="args" value={ this.state.operation}
-                    onChange={(e) => this.setState({ operation: e.target.value })}>
-                      {this.createSelectItems()}           
-                    </Form.Control>
-              </OverlayTrigger>
-        
-          </Form.Group>
-          &nbsp;&nbsp;
-          <Form.Group controlId="inpArgY">
-            <OverlayTrigger
-                  delay={{ hide: 450, show: 300 }}
-                  overlay={(props) => (
-                    <Tooltip {...props}>
-                    User type 
-                    </Tooltip>
-                  )} placement="top">
-              <Form.Control className="args" type="number" value={ this.state.argY}
-                  onChange={(e) => this.setState({ argY: e.target.value })} />
-            </OverlayTrigger>
-          </Form.Group>
-          &nbsp;&nbsp;
-          <Form.Group controlId="btnResult">
-            <OverlayTrigger
-                  delay={{ hide: 450, show: 300 }}
-                  overlay={(props) => (
-                    <Tooltip {...props}>
-                    User clicks 
-                    </Tooltip>
-                  )} placement="top">
-                <Button variant="primary" className="btnSubm"
-                  type="button" onClick={this.handleCalc}>
-                  <FontAwesomeIcon icon={faEquals} size="lg" /> 
-              </Button>
-            </OverlayTrigger>
-          </Form.Group>
-           &nbsp;&nbsp;
-           <Form.Group controlId="labResult">
-             <OverlayTrigger
-                  delay={{ hide: 450, show: 300 }}
-                  overlay={(props) => (
-                    <Tooltip {...props}>
-                    Calculated from server 
-                    </Tooltip>
-                  )} placement="top">
-                 
-                <Form.Control className="args" type="text" value={ this.state.result}
-                    readonly />
-              </OverlayTrigger>
-           </Form.Group>
-        </Form>
-        <div>      
-          {_errorBanner}
-        <br/>
+ 
         {/* <Form.Label>X:{this.state.argX}|OP{this.state.operation}|Y:{this.state.argY}={this.state.result}</Form.Label> */}
         </div>
 
         <CalculatorTable></CalculatorTable>
+ 
 
       </div >
     

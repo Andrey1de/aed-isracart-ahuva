@@ -96,10 +96,9 @@ class CalcClass {
             }
             
             dto.error = _data?.error || '';
-            dto.result =   _data.result || 'N/A';
-
+    
             if (!dto.error) {
-                dto.result = _data.result || 'N/A';
+                dto.result = _data.result;
                 CalcClass.CMap.set(dto.id, dto);
                 this.SelectedDto = undefined;
                
