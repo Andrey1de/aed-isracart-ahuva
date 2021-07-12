@@ -17,7 +17,7 @@ export default class App extends Component {
       <Layout>
         <Route exact path='/' component={About} />
         <Route path='/calc' component={CalculatorPage} />
-        <Route path="/swagger" render={() => (window.location = "http://localhost:5000/swagger")} />
+        <Route path="/swagger" render={() => (window.location = "https://localhost:5001/swagger")} />
 
       </Layout>
     );
