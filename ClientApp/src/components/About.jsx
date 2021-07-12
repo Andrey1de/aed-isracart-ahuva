@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 //import { render } from "react-dom";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimesCircle  } from "@fortawesome/free-regular-svg-icons";
-import { faArrowAltCircleRight } from "@fortawesome/free-regular-svg-icons";
-
 
 //const MapHistory = new Map();
 export class About extends Component {
@@ -71,19 +67,7 @@ export class About extends Component {
         </div>
  
         <footer >
-          <div>
-            <h4> Agenda for Calculator Page</h4>
-            <p>
-              <FontAwesomeIcon icon={faTimesCircle} size="2x" color="red" /> 
-              DELETE when user presses this button - the calculation will be deleted (both in server and client);
-            </p>
-            <p>
-              <FontAwesomeIcon icon={faArrowAltCircleRight} size="2x" color="green"/>
-              UPDATE when user presses this button - the calculation will be
-              show in the above inputs and when the user change the value ,
-              it will be updated also in the calculation history.
-            </p>
-          </div>
+    
          
         </footer>
         </div>

@@ -6,8 +6,8 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import { faEquals } from "@fortawesome/free-solid-svg-icons";
 import { CalculatorService as Svc } from '../services/CalculatorService';
 import './Calculator.css';
-import { CalculatorTable } from './CalculatorTable';
-import 'bootstrap/dist/css/bootstrap.css';
+
+//import 'bootstrap/dist/css/bootstrap.css';
 
 //const MapHistory = new Map();
 export class Calculator extends Component {
@@ -131,7 +131,7 @@ export class Calculator extends Component {
         <div>
           <Form inline >
 
-            <Form.Group controlId="inpArgX" mb={1}>
+            <Form.Group controlId="inpArgX" >
                   <OverlayTrigger
                     delay={{ hide: 450, show: 300 }}
                     overlay={(props) => (
@@ -139,8 +139,9 @@ export class Calculator extends Component {
                       User type 
                       </Tooltip>
                     )} placement="top">
-                    <Form.Control className="args " type="number" value={ this.state.argX}
-                        onChange={(e) => this.setState({ argX: e.target.value })} />
+                    <Form.Control className="args" type="number" value={ this.state.argX}
+                      onChange={(e) => this.setState({ argX: e.target.value })}
+                  style={{ width: 130 , fontSize: 12 ,fontWeight: 600 }} />
                   </OverlayTrigger>
 
                 </Form.Group >
@@ -171,7 +172,9 @@ export class Calculator extends Component {
                         </Tooltip>
                       )} placement="top">
                   <Form.Control className="args" type="number" value={ this.state.argY}
-                      onChange={(e) => this.setState({ argY: e.target.value })} />
+                  onChange={(e) => this.setState({ argY: e.target.value })}
+                   style={{ width: 130 , fontSize: 12 ,fontWeight: 600 }} />
+                    
                 </OverlayTrigger>
               </Form.Group>
               &nbsp;&nbsp;
@@ -200,7 +203,7 @@ export class Calculator extends Component {
                       )} placement="top">
                     
                     <Form.Control className="args" type="text" value={ this.state.result}
-                        readOnly />
+                        readOnly style={{ width: 130 , fontSize: 12 ,fontWeight: 600 }}/>
                   </OverlayTrigger>
               </Form.Group>
             </Form>
@@ -212,9 +215,7 @@ export class Calculator extends Component {
         {/* <Form.Label>X:{this.state.argX}|OP{this.state.operation}|Y:{this.state.argY}={this.state.result}</Form.Label> */}
         </div>
 
-        <CalculatorTable></CalculatorTable>
- 
-
+     
       </div >
     
     );

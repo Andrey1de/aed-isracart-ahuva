@@ -4,7 +4,7 @@ import { CalcDto} from '../models/CalcDto';
 import { Subject } from 'rxjs';
 
 ///TO USER SERVER - MOK have been set to  0
-export const MOK = 0;
+export const MOK = 1;
 const BASE_URL_0 = 'http://localhost:5000/api/calc';
 
 ///=========================================================

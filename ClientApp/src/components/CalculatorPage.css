@@ -1,0 +1,54 @@
+html {
+    font-size: 12px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+.root {
+    flex: 1; 
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-between;
+}
+
+
+.work {
+    flex: 1; 
+    display: flex; 
+    flex-direction: row; 
+ 
+    height: 100%; 
+    min-height: 680px;
+}
+
+
+.left {
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+    min-height: 680px; 
+    width : 50%; 
+   
+}
+
+
+.right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 680px; 
+    width : 50%; 
+   
+}
+
+
+.leftFooter {
+    margin-top: auto;
+    height: 220px; 
+    width: 100%; 
+ 
+}

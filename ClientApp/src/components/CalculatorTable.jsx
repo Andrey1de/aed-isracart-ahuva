@@ -52,7 +52,7 @@ export class CalculatorTable extends Component {
   }
 
   onEvHistory = (n) => {
-      this.setState({ history: [...Svc.getHistory()]  });
+      this.setState({ history: [...Svc.getHistory()].slice(0,16)  });
   }
 
   handleSelectRow = (e, id) => {

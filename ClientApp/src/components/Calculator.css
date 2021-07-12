@@ -12,7 +12,7 @@ button.btnSubm{
   font-weight: 900 !important;
 }
 
-input.args{
+.args{
   width: 60 px !important;
   padding-left: 10px;
   padding-right: 10px;
@@ -26,12 +26,7 @@ select.args{
   font-size: 22px !important;
  
 };  */
-.args{
- 
-}
-.sel {
- 
-}
+
 
 .args .sel {
   font-size: 16 px;
