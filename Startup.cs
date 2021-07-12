@@ -59,13 +59,13 @@ namespace aed_isracart_ahuva
             {
                 app.UseExceptionHandler("/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
+              //  app.UseHsts();
             }
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "aed_isracart_ahuva v1"));
 
 
-           app.UseHttpsRedirection();
+          // app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
@@ -84,7 +84,7 @@ namespace aed_isracart_ahuva
 
                 if (env.IsDevelopment())
                 {
-                 // spa.UseReactDevelopmentServer(npmScript: "start");
+                 spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
         }

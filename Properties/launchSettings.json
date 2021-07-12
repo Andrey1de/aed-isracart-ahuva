@@ -2,6 +2,10 @@
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
+    "iis": {
+      "applicationUrl": "http://localhost/aed-isracart-ahuva",
+      "sslPort": 0
+    },
     "iisExpress": {
       "applicationUrl": "http://localhost:4816",
       "sslPort": 44305
@@ -19,9 +23,12 @@
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Developement"
+        "ASPNETCORE_ENVIRONMENT": "Production"
       },
-      "applicationUrl": "https://localhost:5001;http://localhost:5000"
+      "applicationUrl": "http://localhost:5000"
+    },
+    "newProfile1": {
+      "commandName": "Project"
     }
   }
 }
